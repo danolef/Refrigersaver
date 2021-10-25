@@ -7,3 +7,8 @@ function getRecipeData() {
 }
 
 getRecipeData();
+
+// like bttn
+function likeBttn(x) {
+    x.classList.toggle("fa-thumbs-down");
+  }

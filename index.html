@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase1 Project</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script defer type="text/javascript" src="index.js"></script>
 </head>
+
 <body>
-    <script src=script.js></script>
+  <header>
+    <h3>Phase1 Project</h3>
+  </header>
+
+  <!-- Recipe Menu -->
+  <div id="recipe-menu">
+    <!-- Recipe Images Here -->
+  </div>
+
+  <!-- Recipe Details -->
+  <div id="recipe-detail">
+    <img class="detail-image" src=" " alt="Insert Name Here" />
+    <h2 class="name">Insert Name Here</h2>
+    <h3 class="ingredients">Insert ingredients Here</h3>
+    <li>
+        <!--Insert <ul> here-->
+    </li>
+    <h3 class="instructions">Insert instructions Here</h3>
+    <p>
+        <!--Insert instructions here-->
+    </p>
+
+  </div>
+
+  <i onclick="likeBttn(this)" class="fa fa-thumbs-up"></i>
+
+  <h3>Comment:</h3>
+  <p id='comment-display'>
+    Insert comment here
+  </p>
+
+  <!--search for ingredient-->
+  <form id="search ingredient">
+    <h4>Search with Ingredient</h4>
+    <label for="ingredient-search">Ingredient: </label>
+    <textarea name="ingredient-search" id="ingredient-search"></textarea>
+    <input type="submit" value="Search" />
+  </form>
+
+  <!--Add comment-->
+  <form id="comment-recipe">
+    <h4>Update the Featured Recipe</h4>
+    <label for="new-comment">Comment: </label>
+    <textarea name="new-comment" id="new-comment"></textarea>
+    <input type="submit" value="Update" />
+  </form>
+
+
+  <header>
+    <h3>Favorites</h3>
+  </header>
+  <!-- Favorites List -->
+  <div id="favorite-list">
+    <!-- Favorite recipe Images Here -->
+  </div>
+
 </body>
+
 </html>
