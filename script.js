@@ -77,12 +77,8 @@ function renderMealDetails(meal) {
             ingredientListItem.innerText = ingredient
             ingredientList.appendChild(ingredientListItem)
             console.log(ingredient)
-        });
-
-        
+        }); 
     })
-
-    
 }
 // Initializers
 
