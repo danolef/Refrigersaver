@@ -1,5 +1,6 @@
 // DOM Selectors
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
+const mealLookupUrl ='https://www.themealdb.com/api/json/v1/1/lookup.php?i='
 const inputIngredient = document.querySelector('#ingredient-search')
 const recipeMenu = document.querySelector('#recipe-menu')
 const searchIngredientForm = document.querySelector('#search-form')
@@ -40,7 +41,7 @@ function renderRecipes(meal) {
     let mealTitle = newMealObject.title;
     let mealImageDom = document.createElement('img');
 
-    mealImageDom.addEventListener('click', renderMealDetails(meal))
+    mealImageDom.addEventListener('click', () => renderMealDetails(meal))
 
     mealImageDom.src = mealImage;
     mealImageDom.alt = mealTitle;
@@ -48,13 +49,41 @@ function renderRecipes(meal) {
 }
 
 function renderMealDetails(meal) {
+    let mealUrl = mealLookupUrl + `${meal.idMeal}`
+    //console.log(meal.idMeal)
+    fetch(mealUrl)
+    .then(r => r.json())
+    .then(mealDetailObj => {
+        console.log(mealDetailObj)
+        const mealObj = mealDetailObj.meals[0]
 
+        let ingredientsListArray = []
+
+        for(let i = 1; i <= 20; i++) {
+            if (mealObj["strIngredient" + i] ) {
+                ingredientsListArray.push(`${mealObj[`strIngredient${i}`]} : ${mealObj[`strMeasure${i}`]}`)
+            } else {
+                break;
+            }
+        }
+        console.log(ingredientsListArray)
+
+ 
+
+        ingredientsListArray.forEach(ingredient => {
+            const ingredientList = document.querySelector('#ingredientList')
+            const ingredientListItem = document.createElement("li")
+
+            ingredientListItem.innerText = ingredient
+            ingredientList.appendChild(ingredientListItem)
+            console.log(ingredient)
+        });
+
+        
+    })
+
+    
 }
 // Initializers
-function init() {
-    document.addEventListener('DOMContentLoaded', () => {
-        getRecipeData();
-    })
-}
-init();
+
 
