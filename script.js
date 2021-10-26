@@ -8,7 +8,7 @@ const searchIngredientForm = document.querySelector('#search-form')
 searchIngredientForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let ingredient = document.querySelector('#ingredient-search').value;
-    console.log(ingredient)
+    // console.log(ingredient)
     getRecipeData(ingredient);
     searchIngredientForm.reset();
 })
@@ -21,25 +21,27 @@ function getRecipeData(ingredient) {
     .then(mealsObjectWithArray => {
         let mealsArray = mealsObjectWithArray.meals;
         recipeMenu.innerHTML = '',
-        console.log(mealsArray)
-        mealsArray.forEach(meal => {
-            
-            let newMealObject = {
-                id: meal.idMeal,
-                image: meal.strMealThumb,
-                title: meal.strMeal,
-            }
-
-            let mealImage = newMealObject.image;
-            let mealTitle = newMealObject.title;
-            let mealImageDom = document.createElement('img');
-            mealImageDom.src = mealImage;
-            mealImageDom.alt = mealTitle;
-            recipeMenu.appendChild(mealImageDom);
-            
-        })
+        // console.log(mealsArray)
+        mealsArray.forEach(renderRecipes)
     })
 }
+
+// Render Functions
+function renderRecipes(meal){
+            
+        let newMealObject = {
+            id: meal.idMeal,
+            image: meal.strMealThumb,
+            title: meal.strMeal,
+        }
+
+        let mealImage = newMealObject.image;
+        let mealTitle = newMealObject.title;
+        let mealImageDom = document.createElement('img');
+        mealImageDom.src = mealImage;
+        mealImageDom.alt = mealTitle;
+        recipeMenu.appendChild(mealImageDom);
+    }
 
 // Initializers
 function init() {
