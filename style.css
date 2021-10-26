@@ -28,11 +28,16 @@
     max-width: calc(100vw - 2rem);
   }
   
+  #recipe-menu div {
+    height: 200px;
+    margin: 8px;
+    cursor: pointer;
+  }
+
   #recipe-menu img {
     flex: 0 1 auto;
     height: 150px;
     margin-right: 0.5rem;
-    cursor: pointer;
   }
   
   

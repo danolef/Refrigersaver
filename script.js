@@ -40,12 +40,18 @@ function renderRecipes(meal) {
     let mealImage = newMealObject.image;
     let mealTitle = newMealObject.title;
     let mealImageDom = document.createElement('img');
+    let mealImageContainer = document.createElement('div');
+    let mealImageTitle = document.createElement('p')
 
-    mealImageDom.addEventListener('click', () => renderMealDetails(meal))
+    mealImageContainer.addEventListener('click', () => renderMealDetails(meal))
 
+    mealImageTitle.textContent = mealTitle;
     mealImageDom.src = mealImage;
     mealImageDom.alt = mealTitle;
-    recipeMenu.appendChild(mealImageDom);
+    mealImageContainer.id = 'mealImageContainer';
+    mealImageContainer.appendChild(mealImageDom);
+    mealImageContainer.appendChild(mealImageTitle);
+    recipeMenu.appendChild(mealImageContainer);
 }
 
 function renderMealDetails(meal) {
