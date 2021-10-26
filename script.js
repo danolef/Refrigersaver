@@ -27,22 +27,29 @@ function getRecipeData(ingredient) {
 }
 
 // Render Functions
-function renderRecipes(meal){
+function renderRecipes(meal) {
             
-        let newMealObject = {
-            id: meal.idMeal,
-            image: meal.strMealThumb,
-            title: meal.strMeal,
-        }
-
-        let mealImage = newMealObject.image;
-        let mealTitle = newMealObject.title;
-        let mealImageDom = document.createElement('img');
-        mealImageDom.src = mealImage;
-        mealImageDom.alt = mealTitle;
-        recipeMenu.appendChild(mealImageDom);
+    let newMealObject = {
+        id: meal.idMeal,
+        image: meal.strMealThumb,
+        title: meal.strMeal,
     }
 
+
+    let mealImage = newMealObject.image;
+    let mealTitle = newMealObject.title;
+    let mealImageDom = document.createElement('img');
+
+    mealImageDom.addEventListener('click', renderMealDetails(meal))
+
+    mealImageDom.src = mealImage;
+    mealImageDom.alt = mealTitle;
+    recipeMenu.appendChild(mealImageDom);
+}
+
+function renderMealDetails(meal) {
+
+}
 // Initializers
 function init() {
     document.addEventListener('DOMContentLoaded', () => {
