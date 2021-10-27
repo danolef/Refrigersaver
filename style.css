@@ -57,13 +57,17 @@
     max-width: calc(100vw - 2rem);
   }
   
-  #favoriteList img {
+  #favoriteList div {
+    height: 200px;
+    margin: 8px;
+    cursor: pointer;
+  }
+
+  #favoriteList div img {
     flex: 0 1 auto;
     height: 150px;
     margin-right: 0.5rem;
-    cursor: pointer;
   }
-  
   
   #favoriteList img:last-child {
     margin-right: 0;
