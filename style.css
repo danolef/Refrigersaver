@@ -39,7 +39,7 @@
     cursor: pointer;
   }
 
-  #recipe-menu img {
+  #recipe-menu div img {
     flex: 0 1 auto;
     height: 150px;
     margin-right: 0.5rem;
