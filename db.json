@@ -54,7 +54,8 @@
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null,
-      "id": 1
+      "id": 1,
+      "comment": ""
     },
     {
       "idMeal": "52878",
@@ -110,7 +111,8 @@
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null,
-      "id": 2
+      "id": 2,
+      "comment": ""
     },
     {
       "idMeal": "52873",
@@ -166,7 +168,8 @@
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null,
-      "id": 3
+      "id": 3,
+      "comment": ""
     },
     {
       "idMeal": "52773",

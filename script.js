@@ -15,6 +15,7 @@ const favoriteList = document.querySelector('#favoriteList')
 const favoriteCommentTitleDOM = document.querySelector('#commentDisplayTitle')
 const favoriteCommentForm = document.querySelector('#commentRecipe')
 const favoriteCommentList = document.querySelector('#commentDisplay')
+const perCommentListItem= document.querySelector("#newCommentListItem")
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
@@ -71,6 +72,7 @@ function renderRecipes(meal) {
     mealImageContainer.appendChild(mealImageDom);
     mealImageContainer.appendChild(mealImageTitle);
     recipeMenu.appendChild(mealImageContainer);
+
 }
 
 function renderRecipeDetails(meal) {
@@ -106,9 +108,11 @@ function renderDetails(mealObj) {
     // Appending mealObj info to DOM
     ingredientList.innerHTML= ""
     favBttn.innerHTML = ""
+    // favoriteCommentList.innerHTML= ""
     recipeDetailImg.src= mealObj.strMealThumb
     recipeDetailName.textContent= mealObj.strMeal
     recipeDetailInstructions.textContent= mealObj.strInstructions
+    // perCommentListItem.textContent=mealObj.comment
 
     // ingredients appending to DOM
     ingredientsListArray.forEach(ingredient => {
@@ -132,6 +136,7 @@ function renderFavorites(favoriteMealArray){
         favoriteContainer.appendChild(favoriteImage)
         favoriteContainer.appendChild(favoriteTitle)
         favoriteList.appendChild(favoriteContainer)
+        
 
         favoriteContainer.addEventListener('click', () => renderFavoriteDetails(meal))
     })
@@ -156,7 +161,10 @@ function addToFavorite(mealObj) {
 
 function renderFavoriteDetails(meal) {
     favoriteCommentTitleDOM.style.display = "block";
+    renderComment(meal);
     renderDetails(meal);
+
+    
 
     favoriteCommentForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -166,13 +174,40 @@ function renderFavoriteDetails(meal) {
 
 }
 
+function renderComment(meal) {
+    let perMealComment = meal.comment
+    favoriteCommentList.textContent= perMealComment
+}
+
 function addComment(meal) {
-    let newCommentListItem = document.createElement('li');
+       
+  
     let comment = document.querySelector('#newComment').value;
-    newCommentListItem.textContent = comment;
-    favoriteCommentList.appendChild(newCommentListItem);
+    favoriteCommentList.textContent= comment
+
+
+    let newCommentObj= {
+        comment: comment
+    }
+
+    let newObj= {...meal, ...newCommentObj}     
+    
+   
+    fetch (favoritesUrl + `/${meal.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newObj)
+
+    })
+    .then(res => res.json())
+    .then((meal) => {
+        renderFavoriteDetails(meal)
+    })
+
+
 }
 
 // Initializers
 getFavoritesData();
-
