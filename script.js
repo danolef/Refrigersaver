@@ -9,6 +9,7 @@ const recipeDetailImg= document.querySelector('#recipeDetailImage')
 const recipeDetailName= document.querySelector("#recipeName")
 const recipeDetailInstructions= document.querySelector("#recipeInstructions")
 const detailDiv = document.querySelector('#recipe-detail')
+const favBttn = document.querySelector('#favoriteBttn')
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
@@ -81,6 +82,7 @@ function renderMealDetails(meal) {
         // console.log(ingredientsListArray)
         // Appending mealObj info to DOM
         ingredientList.innerHTML= ""
+        favBttn.innerHTML = ""
         recipeDetailImg.src= mealObj.strMealThumb
         recipeDetailName.textContent= mealObj.strMeal
         recipeDetailInstructions.textContent= mealObj.strInstructions
@@ -95,8 +97,9 @@ function renderMealDetails(meal) {
         // Favorite Button Creation
         const favoriteButton = document.createElement('button')
         favoriteButton.textContent = 'Add to Favorites!'
-        detailDiv.appendChild(favoriteButton)
+        favBttn.appendChild(favoriteButton)
         favoriteButton.addEventListener("click", () => addToFavorite(mealObj))
+        
     })
 }
 
