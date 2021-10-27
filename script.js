@@ -11,6 +11,7 @@ const recipeDetailName= document.querySelector("#recipeName")
 const recipeDetailInstructions= document.querySelector("#recipeInstructions")
 const detailDiv = document.querySelector('#recipe-detail')
 const favBttn = document.querySelector('#favoriteBttn')
+const favoriteList = document.querySelector('#favoriteList')
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
@@ -58,7 +59,7 @@ function renderRecipes(meal) {
     let mealImageContainer = document.createElement('div');
     let mealImageTitle = document.createElement('p')
 
-    mealImageContainer.addEventListener('click', () => renderMealDetails(meal))
+    mealImageContainer.addEventListener('click', () => renderRecipeDetails(meal))
 
     mealImageTitle.textContent = mealTitle;
     mealImageDom.src = mealImage;
@@ -69,7 +70,7 @@ function renderRecipes(meal) {
     recipeMenu.appendChild(mealImageContainer);
 }
 
-function renderMealDetails(meal) {
+function renderRecipeDetails(meal) {
     let mealUrl = mealLookupUrl + `${meal.idMeal}`
     //console.log(meal.idMeal)
     fetch(mealUrl)
@@ -77,29 +78,7 @@ function renderMealDetails(meal) {
     .then(mealDetailObj => {
         // console.log(mealDetailObj)
         const mealObj = mealDetailObj.meals[0]
-        let ingredientsListArray = []
-
-        for(let i = 1; i <= 20; i++) {
-            if (mealObj["strIngredient" + i] ) {
-                ingredientsListArray.push(`${mealObj[`strIngredient${i}`]} : ${mealObj[`strMeasure${i}`]}`)
-            } else {
-                break;
-            }
-        }
-        // console.log(ingredientsListArray)
-        // Appending mealObj info to DOM
-        ingredientList.innerHTML= ""
-        favBttn.innerHTML = ""
-        recipeDetailImg.src= mealObj.strMealThumb
-        recipeDetailName.textContent= mealObj.strMeal
-        recipeDetailInstructions.textContent= mealObj.strInstructions
-
-        // ingredients appending to DOM
-        ingredientsListArray.forEach(ingredient => {
-            const ingredientListItem = document.createElement("li")
-            ingredientListItem.innerText = ingredient
-            ingredientList.appendChild(ingredientListItem)
-        });
+        renderDetails(mealObj);
 
         // Favorite Button Creation
         const favoriteButton = document.createElement('button')
@@ -107,6 +86,51 @@ function renderMealDetails(meal) {
         favBttn.appendChild(favoriteButton)
         favoriteButton.addEventListener("click", () => addToFavorite(mealObj))
         
+    })
+}
+
+function renderDetails(mealObj) {
+    let ingredientsListArray = []
+
+    for(let i = 1; i <= 20; i++) {
+        if (mealObj["strIngredient" + i] ) {
+            ingredientsListArray.push(`${mealObj[`strIngredient${i}`]} : ${mealObj[`strMeasure${i}`]}`)
+        } else {
+            break;
+        }
+    }
+    
+    // Appending mealObj info to DOM
+    ingredientList.innerHTML= ""
+    favBttn.innerHTML = ""
+    recipeDetailImg.src= mealObj.strMealThumb
+    recipeDetailName.textContent= mealObj.strMeal
+    recipeDetailInstructions.textContent= mealObj.strInstructions
+
+    // ingredients appending to DOM
+    ingredientsListArray.forEach(ingredient => {
+        const ingredientListItem = document.createElement("li")
+        ingredientListItem.innerText = ingredient
+        ingredientList.appendChild(ingredientListItem)
+    });
+}
+
+function renderFavorites(favoriteMealArray){
+    favoriteMealArray.forEach(meal => {
+        const favoriteContainer = document.createElement('div');
+        const favoriteImage = document.createElement('img');
+        const favoriteTitle = document.createElement('p');
+
+        favoriteImage.src = meal.strMealThumb;
+        favoriteImage.alt = meal.strMeal;
+        favoriteTitle.textContent = meal.strMeal;
+        favoriteContainer.id = 'favoriteContainer'
+
+        favoriteContainer.appendChild(favoriteImage)
+        favoriteContainer.appendChild(favoriteTitle)
+        favoriteList.appendChild(favoriteContainer)
+
+        favoriteContainer.addEventListener('click', () => renderDetails(meal))
     })
 }
 
@@ -126,7 +150,6 @@ function addToFavorite(mealObj) {
     .catch ((error) => console.error("error:", error))
     .then ((resObj)=> console.log('res Obj:', resObj)
     )}
-
 
 // Initializers
 getFavoritesData();
