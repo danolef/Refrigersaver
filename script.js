@@ -1,6 +1,7 @@
 // DOM Selectors
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
 const mealLookupUrl ='https://www.themealdb.com/api/json/v1/1/lookup.php?i='
+const favoritesUrl = 'http://localhost:3000/resources'
 const inputIngredient = document.querySelector('#ingredient-search')
 const recipeMenu = document.querySelector('#recipe-menu')
 const searchIngredientForm = document.querySelector('#search-form')
@@ -33,6 +34,12 @@ function getRecipeData(ingredient) {
         // console.log(mealsArray)
         mealsArray.forEach(renderRecipes)
     })
+}
+
+function getFavoritesData() {
+    fetch(favoritesUrl)
+    .then(r => r.json())
+    .then(renderFavorites)
 }
 
 // Render Functions
@@ -106,7 +113,7 @@ function renderMealDetails(meal) {
 // Event Handler
 
 function addToFavorite(mealObj) {
-    
+
     fetch ('http://localhost:3000/resources', {
         method: 'POST',
         headers: {
@@ -122,5 +129,5 @@ function addToFavorite(mealObj) {
 
 
 // Initializers
-
+getFavoritesData();
 

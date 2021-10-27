@@ -50,14 +50,14 @@
     margin-right: 0;
   }
 
-  #favorite-list {
+  #favoriteList {
     display: flex;
     overflow-x: auto;
     margin: 1rem 0;
     max-width: calc(100vw - 2rem);
   }
   
-  #favorite-list img {
+  #favoriteList img {
     flex: 0 1 auto;
     height: 150px;
     margin-right: 0.5rem;
@@ -65,7 +65,7 @@
   }
   
   
-  #favorite-list img:last-child {
+  #favoriteList img:last-child {
     margin-right: 0;
   }
   
