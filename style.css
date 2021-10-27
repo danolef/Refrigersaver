@@ -74,14 +74,14 @@
   
   .name,
   .ingredients {
-    position: absolute;
+    position: relative;
     left: 10px;
     padding: 0.25rem 5rem 0.25rem 1rem;
     
   }
 
   .instructions {
-    position: absolute;
+    position: relative;
     left: 10px;
     padding: 0.25rem 5rem 0.25rem 1rem;
     
@@ -93,8 +93,19 @@
   
   .ingredients {
     bottom: 20px;
+    text-align: center;
   }
   
+  #ingredientList {
+    width: 10%;
+    text-align: center;
+    margin: auto;
+  }
+
+  li {
+    text-align: left;
+  }
+
   form {
     margin: 1rem 0;
     width: 300px;
