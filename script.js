@@ -8,9 +8,14 @@ const ingredientList = document.querySelector('#ingredientList')
 const recipeDetailImg= document.querySelector('#recipeDetailImage')
 const recipeDetailName= document.querySelector("#recipeName")
 const recipeDetailInstructions= document.querySelector("#recipeInstructions")
+<<<<<<< HEAD
 const detailDiv = document.querySelector('#recipe-detail')
 // const favoriteButton= document.querySelector("#favoriteButton")
 // const url= "http://localhost:3000/resources"
+=======
+const favoriteButton= document.querySelector("#favoriteButton")
+const url= "http://localhost:3000/resources"
+>>>>>>> 2dc42f015c6e415bf71dea49f4cf8a3f82c1415f
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
@@ -85,11 +90,19 @@ function renderMealDetails(meal) {
 
         
         ingredientList.innerHTML= ""
+<<<<<<< HEAD
 
         recipeDetailImg.src= mealObj.strMealThumb
         recipeDetailName.textContent= mealObj.strMeal
         recipeDetailInstructions.textContent= mealObj.strInstructions
 
+=======
+
+        recipeDetailImg.src= mealObj.strMealThumb
+        recipeDetailName.textContent= mealObj.strMeal
+        recipeDetailInstructions.textContent= mealObj.strInstructions
+
+>>>>>>> 2dc42f015c6e415bf71dea49f4cf8a3f82c1415f
  
         ingredientsListArray.forEach(ingredient => {
             
@@ -105,11 +118,15 @@ function renderMealDetails(meal) {
 
         });
 
+<<<<<<< HEAD
         const favoriteButton = document.createElement('button')
         favoriteButton.textContent = 'Add to Favorites!'
         detailDiv.appendChild(favoriteButton)
         
         favoriteButton.addEventListener("click", () => addToFavorite(mealObj) )
+=======
+        favoriteButton.addEventListener("click", ()=> AddtoFavorite(mealObj))
+>>>>>>> 2dc42f015c6e415bf71dea49f4cf8a3f82c1415f
     })
 }
 
@@ -122,6 +139,7 @@ function addToFavorite(mealObj) {
     //     keysObj : values,
     // }
     
+<<<<<<< HEAD
     console.log(mealObj)
 
     let newMealObj = {
@@ -204,6 +222,39 @@ function addToFavorite(mealObj) {
     .then ((resObj)=> console.log('res Obj:', resObj)
 
     )}
+=======
+}
+
+// Event Handler
+
+function AddtoFavorite(mealObj) {
+    // let keysObj= Object.keys(mealObj)
+    // let values= Object.values(mealObj)
+    // let favoriteMealObj= {
+    //     keysObj : values,
+    // }
+
+    const favoriteMealObj= {
+        strMeal: mealObj.strMeal
+    }
+
+    const postrecipe = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        Body: JSON.stringify(favoriteMealObj)
+    }
+
+    // console.log("mealObj:", favoriteMealObj)
+
+    fetch (url, postrecipe)
+    .then (res => res.json())
+    .catch ((error) => console.error("error:", error))
+    .then ((resObj)=> console.log(resObj))
+
+}
+>>>>>>> 2dc42f015c6e415bf71dea49f4cf8a3f82c1415f
 
 
 // Initializers

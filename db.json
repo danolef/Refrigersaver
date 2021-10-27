@@ -1,6 +1,7 @@
 {
   "resources": [
     {
+<<<<<<< HEAD
       "id": 1,
       "dateModified": null,
       "idMeal": "53053",
@@ -55,6 +56,9 @@
       "strSource": "https://rasamalaysia.com/beef-rendang-recipe-rendang-daging/",
       "strTags": null,
       "strYoutube": "https://www.youtube.com/watch?v=Ot-dmfBaZrA"
+=======
+      "id": 1
+>>>>>>> 2dc42f015c6e415bf71dea49f4cf8a3f82c1415f
     },
     {
       "id": 2
@@ -69,6 +73,7 @@
       "id": 5
     },
     {
+<<<<<<< HEAD
       "idMeal": "52824",
       "strMeal": "Beef Sunday Roast",
       "strDrinkAlternate": null,
@@ -235,6 +240,9 @@
       "strCreativeCommonsConfirmed": null,
       "dateModified": null,
       "id": 8
+=======
+      "id": 6
+>>>>>>> 2dc42f015c6e415bf71dea49f4cf8a3f82c1415f
     }
   ]
 }
