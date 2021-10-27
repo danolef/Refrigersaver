@@ -21,6 +21,11 @@
     background-color: black;
   }
   
+  h3 {
+    font-family: Yanone Kaffeesatz;
+    font-weight: 500;
+    font-size: 10ch;
+  }
   #recipe-menu {
     display: flex;
     overflow-x: auto;
@@ -77,13 +82,15 @@
     position: relative;
     left: 10px;
     padding: 0.25rem 5rem 0.25rem 1rem;
-    
+      
   }
 
   .instructions {
     position: relative;
     left: 10px;
     padding: 0.25rem 5rem 0.25rem 1rem;
+    font-size: 4ch;
+    font-weight: 300;
     
   }
   
@@ -97,9 +104,12 @@
   }
   
   #ingredientList {
-    width: 10%;
-    text-align: center;
+    width: 100%;
+    text-align: left;
+    height: 150px;
     margin: auto;
+    column-count: 3;
+    column-gap: 20px
   }
 
   li {
