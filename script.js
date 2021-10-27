@@ -130,7 +130,7 @@ function renderFavorites(favoriteMealArray){
         favoriteContainer.appendChild(favoriteTitle)
         favoriteList.appendChild(favoriteContainer)
 
-        favoriteContainer.addEventListener('click', () => renderDetails(meal))
+        favoriteContainer.addEventListener('click', () => renderFavoriteDetails(meal))
     })
 }
 
@@ -150,6 +150,12 @@ function addToFavorite(mealObj) {
     .catch ((error) => console.error("error:", error))
     .then ((resObj)=> console.log('res Obj:', resObj)
     )}
+
+function renderFavoriteDetails(meal) {
+    let favoriteCommentTitleDOM = document.querySelector('#commentDisplayTitle')
+    favoriteCommentTitleDOM.style.display = "block";
+    renderDetails(meal);
+}
 
 // Initializers
 getFavoritesData();
