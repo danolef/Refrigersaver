@@ -34,18 +34,23 @@
     <p>
         <!--Insert instructions here-->
     </p>
-    <div id="favoriteBttn">Add to Favorite
-      
+    <div id="favoriteBttn"> 
     </div>
 
   </div>
 
-
+<div id='commentDisplayTitle' class='favoriteComment' style="display:none">
   <h3>Comment:</h3>
   <p id='comment-display'>
     Insert comment here
   </p>
-
+  <form id="comment-recipe" class='favoriteComment'>
+    <h4>Update the Featured Recipe</h4>
+    <label for="new-comment">Comment: </label>
+    <textarea name="new-comment" id="new-comment"></textarea>
+    <input type="submit" value="Update" />
+  </form>
+</div>
   <!--search for ingredient-->
   <form id="search-form">
     <h4>Search with Ingredient</h4>
@@ -55,12 +60,12 @@
   </form>
 
   <!--Add comment-->
-  <form id="comment-recipe">
+  <!-- <form id="comment-recipe" class='favoriteComment' style="display:none">
     <h4>Update the Featured Recipe</h4>
     <label for="new-comment">Comment: </label>
     <textarea name="new-comment" id="new-comment"></textarea>
     <input type="submit" value="Update" />
-  </form>
+  </form> -->
 
 
   <header>
