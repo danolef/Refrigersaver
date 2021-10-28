@@ -15,6 +15,7 @@ const favoriteList = document.querySelector('#favoriteList')
 const favoriteCommentTitleDOM = document.querySelector('#commentDisplayTitle')
 const favoriteCommentForm = document.querySelector('#commentRecipe')
 const favoriteCommentList = document.querySelector('#commentDisplay')
+const recipeIngredients= document.querySelector("#recipeIngredients")
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
@@ -67,7 +68,6 @@ function renderRecipes(meal) {
     mealImageContainer.appendChild(mealImageDom);
     mealImageContainer.appendChild(mealImageTitle);
     recipeMenu.appendChild(mealImageContainer);
-
 }
 
 function renderRecipeDetails(meal) {
@@ -85,7 +85,7 @@ function renderRecipeDetails(meal) {
         favoriteButton.textContent = 'Add to Favorites!'
         favBttn.appendChild(favoriteButton)
         favoriteButton.addEventListener("click", () => addToFavorite(mealObj))
-        
+        recipeIngredients.style.display= "block";
     })
 }
 

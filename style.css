@@ -26,6 +26,13 @@
     font-weight: 500;
     font-size: 10ch;
   }
+
+  #recipeName {
+    padding-top: 60px;
+    background-color: rgb(190, 194, 194);
+
+  }
+
   #recipe-menu {
     display: flex;
     overflow-x: auto;
