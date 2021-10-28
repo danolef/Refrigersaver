@@ -27,9 +27,9 @@
     <img id="recipeDetailImage" class="detail-image" src=" " alt="Insert Name Here" />
     <h2 id="recipeName" class="name">""</h2>
     <h3 id="recipeIngredients" class="ingredients">Ingredient List</h3>
-    <ul id="ingredientList">
+    <p id="ingredientList">
         <!--Insert <ul> here-->
-        </ul>
+        </p>
     <h3 id="recipeInstructions" class="instructions"></h3>
     <p>
         <!--Insert instructions here-->
@@ -41,16 +41,16 @@
 
 <div id='commentDisplayTitle' class='favoriteComment' style="display:none">
   <h3>Comment:</h3>
-  <p id='comment-display'>
-    Insert comment here
+  <p id='commentDisplay'>
   </p>
-  <form id="comment-recipe" class='favoriteComment'>
+  <form id="commentRecipe" class='favoriteComment'>
     <h4>Update the Featured Recipe</h4>
     <label for="new-comment">Comment: </label>
-    <textarea name="new-comment" id="new-comment"></textarea>
+    <textarea name="newComment" id="newComment"></textarea>
     <input type="submit" value="Update" />
   </form>
 </div>
+
   <!--search for ingredient-->
   <form id="search-form">
     <h4>Search with Ingredient</h4>
@@ -58,15 +58,6 @@
     <textarea name="ingredientInput" id="ingredient-search"></textarea>
     <input type="submit" value="Search" />
   </form>
-
-  <!--Add comment-->
-  <!-- <form id="comment-recipe" class='favoriteComment' style="display:none">
-    <h4>Update the Featured Recipe</h4>
-    <label for="new-comment">Comment: </label>
-    <textarea name="new-comment" id="new-comment"></textarea>
-    <input type="submit" value="Update" />
-  </form> -->
-
 
   <header>
     <h3>Favorites</h3>
