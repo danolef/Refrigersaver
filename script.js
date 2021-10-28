@@ -128,14 +128,14 @@ function renderFavorites(meal){
         favoriteImage.src = meal.strMealThumb;
         favoriteImage.alt = meal.strMeal;
         favoriteTitle.textContent = meal.strMeal;
-        favoriteContainer.id = 'favoriteContainer'
+        favoriteContainer.className = 'favoriteContainer'
 
         favoriteContainer.appendChild(favoriteImage)
         favoriteContainer.appendChild(favoriteTitle)
         favoriteList.appendChild(favoriteContainer)
         
 
-        favoriteContainer.addEventListener('click', () => renderFavoriteDetails(meal))
+        favoriteContainer.addEventListener('click', (e) => renderFavoriteDetails(e, meal))      
 }
 
 // Event Handler
@@ -160,17 +160,20 @@ function addToFavorite(mealObj) {
     .then ((resObj)=> renderFavorites(resObj))
 }
 
-function renderFavoriteDetails(meal) {
+function renderFavoriteDetails(e, meal) {
+    e.preventDefault();
     favoriteCommentTitleDOM.style.display = "block";
     renderDetails(meal);
+    favoriteCommentList.innerHTML = ""
     favoriteCommentList.textContent = meal.comment;
 
     favoriteCommentForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        addComment(meal)
-        favoriteCommentForm.reset();
+        addComment(meal);
+        e.target.reset();
     })
 }
+
 
 function addComment(meal) {
        
