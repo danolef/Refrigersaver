@@ -61,9 +61,9 @@ function renderRecipes(meal) {
     let mealTitle = newMealObject.title;
     let mealImageDom = document.createElement('img');
     let mealImageContainer = document.createElement('div');
-    let mealImageTitle = document.createElement('p')
+    let mealImageTitle = document.createElement('p');
 
-    mealImageContainer.addEventListener('click', () => renderRecipeDetails(meal))
+    mealImageContainer.addEventListener('click', () => renderRecipeDetails(meal));
 
     mealImageTitle.textContent = mealTitle;
     mealImageDom.src = mealImage;
@@ -106,12 +106,12 @@ function renderDetails(mealObj) {
     }
     
     // Appending mealObj info to DOM
-    ingredientList.innerHTML= ""
+    ingredientList.innerHTML = ""
     favBttn.innerHTML = ""
     // favoriteCommentList.innerHTML= ""
-    recipeDetailImg.src= mealObj.strMealThumb
-    recipeDetailName.textContent= mealObj.strMeal
-    recipeDetailInstructions.textContent= mealObj.strInstructions
+    recipeDetailImg.src = mealObj.strMealThumb
+    recipeDetailName.textContent = mealObj.strMeal
+    recipeDetailInstructions.textContent = mealObj.strInstructions
     // perCommentListItem.textContent=mealObj.comment
 
     // ingredients appending to DOM
@@ -146,13 +146,18 @@ function renderFavorites(favoriteMealArray){
 
 function addToFavorite(mealObj) {
 
+    let newCommentObj = {
+        comment: "",
+    }
+    let newMealObj = {...mealObj, ...newCommentObj}
+
     fetch ('http://localhost:3000/resources', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(mealObj)
+        body: JSON.stringify(newMealObj)
     })
     .then (res => res.json())
     .catch ((error) => console.error("error:", error))
@@ -161,52 +166,33 @@ function addToFavorite(mealObj) {
 
 function renderFavoriteDetails(meal) {
     favoriteCommentTitleDOM.style.display = "block";
-    renderComment(meal);
     renderDetails(meal);
-
-    
+    favoriteCommentList.textContent = meal.comment;
 
     favoriteCommentForm.addEventListener('submit', (e) => {
         e.preventDefault();
         addComment(meal)
         favoriteCommentForm.reset();
     })
-
-}
-
-function renderComment(meal) {
-    let perMealComment = meal.comment
-    favoriteCommentList.textContent= perMealComment
 }
 
 function addComment(meal) {
        
-  
     let comment = document.querySelector('#newComment').value;
-    favoriteCommentList.textContent= comment
+    favoriteCommentList.textContent = comment
 
-
-    let newCommentObj= {
-        comment: comment
-    }
-
-    let newObj= {...meal, ...newCommentObj}     
+    meal.comment = comment
     
-   
     fetch (favoritesUrl + `/${meal.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(newObj)
+        body: JSON.stringify(meal)
 
     })
     .then(res => res.json())
-    .then((meal) => {
-        renderFavoriteDetails(meal)
-    })
-
-
+    .then(console.log)
 }
 
 // Initializers
