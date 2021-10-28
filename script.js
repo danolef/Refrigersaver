@@ -16,6 +16,7 @@ const favoriteCommentTitleDOM = document.querySelector('#commentDisplayTitle')
 const favoriteCommentForm = document.querySelector('#commentRecipe')
 const favoriteCommentList = document.querySelector('#commentDisplay')
 const recipeIngredients= document.querySelector("#recipeIngredients")
+let globalMeal;
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
@@ -25,6 +26,11 @@ searchIngredientForm.addEventListener('submit', (e) => {
     searchIngredientForm.reset();
 })
 
+favoriteCommentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addComment(globalMeal);
+    favoriteCommentForm.reset();
+})
 
 // Fetch Functions
 function getRecipeData(ingredient) {
@@ -121,21 +127,23 @@ function renderFavoritesArray(favoriteMealArray){
 }
 
 function renderFavorites(meal){
-        const favoriteContainer = document.createElement('div');
-        const favoriteImage = document.createElement('img');
-        const favoriteTitle = document.createElement('p');
+    const favoriteContainer = document.createElement('div');
+    const favoriteImage = document.createElement('img');
+    const favoriteTitle = document.createElement('p');
 
-        favoriteImage.src = meal.strMealThumb;
-        favoriteImage.alt = meal.strMeal;
-        favoriteTitle.textContent = meal.strMeal;
-        favoriteContainer.className = 'favoriteContainer'
-       
-        favoriteContainer.appendChild(favoriteImage)
-        favoriteContainer.appendChild(favoriteTitle)
-        favoriteList.appendChild(favoriteContainer)
-        
-
-        favoriteContainer.addEventListener('click', (e) => renderFavoriteDetails(e, meal))      
+    favoriteImage.src = meal.strMealThumb;
+    favoriteImage.alt = meal.strMeal;
+    favoriteTitle.textContent = meal.strMeal;
+    favoriteContainer.className = 'favoriteContainer'
+    
+    favoriteContainer.appendChild(favoriteImage)
+    favoriteContainer.appendChild(favoriteTitle)
+    favoriteList.appendChild(favoriteContainer)
+    
+    favoriteContainer.addEventListener('click', (e) => {
+        renderFavoriteDetails(meal)
+        e.stopImmediatePropagation();
+    })
 }
 
 // Event Handler
@@ -160,23 +168,16 @@ function addToFavorite(mealObj) {
     .then ((resObj)=> renderFavorites(resObj))
 }
 
-function renderFavoriteDetails(e, meal) {
-    e.preventDefault();
+function renderFavoriteDetails(meal) {
+    
     favoriteCommentTitleDOM.style.display = "block";
     renderDetails(meal);
     favoriteCommentList.innerHTML = ""
     favoriteCommentList.textContent = meal.comment;
-
-    favoriteCommentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        addComment(meal);
-        e.target.reset();
-    })
+    globalMeal = meal;
 }
 
-
 function addComment(meal) {
-       
     let comment = document.querySelector('#newComment').value;
     favoriteCommentList.textContent = comment
 
