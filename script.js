@@ -15,17 +15,14 @@ const favoriteList = document.querySelector('#favoriteList')
 const favoriteCommentTitleDOM = document.querySelector('#commentDisplayTitle')
 const favoriteCommentForm = document.querySelector('#commentRecipe')
 const favoriteCommentList = document.querySelector('#commentDisplay')
-const perCommentListItem= document.querySelector("#newCommentListItem")
 
 // EventListeners
 searchIngredientForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let ingredient = document.querySelector('#ingredient-search').value;
-    // console.log(ingredient)
     getRecipeData(ingredient);
     searchIngredientForm.reset();
 })
-
 
 
 // Fetch Functions
@@ -36,7 +33,6 @@ function getRecipeData(ingredient) {
     .then(mealsObjectWithArray => {
         let mealsArray = mealsObjectWithArray.meals;
         recipeMenu.innerHTML = '',
-        // console.log(mealsArray)
         mealsArray.forEach(renderRecipes)
     })
 }
@@ -44,7 +40,7 @@ function getRecipeData(ingredient) {
 function getFavoritesData() {
     fetch(favoritesUrl)
     .then(r => r.json())
-    .then(renderFavorites)
+    .then(renderFavoritesArray)
 }
 
 // Render Functions
@@ -55,7 +51,6 @@ function renderRecipes(meal) {
         image: meal.strMealThumb,
         title: meal.strMeal,
     }
-
 
     let mealImage = newMealObject.image;
     let mealTitle = newMealObject.title;
@@ -108,11 +103,10 @@ function renderDetails(mealObj) {
     // Appending mealObj info to DOM
     ingredientList.innerHTML = ""
     favBttn.innerHTML = ""
-    // favoriteCommentList.innerHTML= ""
     recipeDetailImg.src = mealObj.strMealThumb
     recipeDetailName.textContent = mealObj.strMeal
     recipeDetailInstructions.textContent = mealObj.strInstructions
-    // perCommentListItem.textContent=mealObj.comment
+
 
     // ingredients appending to DOM
     ingredientsListArray.forEach(ingredient => {
@@ -122,8 +116,11 @@ function renderDetails(mealObj) {
     });
 }
 
-function renderFavorites(favoriteMealArray){
-    favoriteMealArray.forEach(meal => {
+function renderFavoritesArray(favoriteMealArray){
+    favoriteMealArray.forEach(renderFavorites)
+}
+
+function renderFavorites(meal){
         const favoriteContainer = document.createElement('div');
         const favoriteImage = document.createElement('img');
         const favoriteTitle = document.createElement('p');
@@ -139,7 +136,6 @@ function renderFavorites(favoriteMealArray){
         
 
         favoriteContainer.addEventListener('click', () => renderFavoriteDetails(meal))
-    })
 }
 
 // Event Handler
@@ -161,8 +157,8 @@ function addToFavorite(mealObj) {
     })
     .then (res => res.json())
     .catch ((error) => console.error("error:", error))
-    .then ((resObj)=> console.log('res Obj:', resObj)
-    )}
+    .then ((resObj)=> renderFavorites(resObj))
+}
 
 function renderFavoriteDetails(meal) {
     favoriteCommentTitleDOM.style.display = "block";
@@ -189,7 +185,6 @@ function addComment(meal) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(meal)
-
     })
     .then(res => res.json())
     .then(console.log)
