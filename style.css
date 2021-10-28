@@ -14,6 +14,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url(background.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
   
   header {
@@ -22,7 +27,7 @@
   }
   
   #titleHeader{
-    background-color: rgb(20, 167, 40);
+    background-color: rgb(20, 167, 40, .6);
     padding: 10px;
     color:black;
     font-size: 12ch;
@@ -31,7 +36,7 @@
   }
 
   #favoritesBar{
-    background-color: rgb(20, 167, 40);
+    background-color: rgb(20, 167, 40, .6);
     color: black;
     text-align: center;
   }
@@ -40,6 +45,8 @@
     font-family: Yanone Kaffeesatz;
     font-weight: 500;
     font-size: 10ch;
+    max-width: 90%;
+    margin: auto;
     /* background-color: lightblue; */
   }
 
@@ -68,7 +75,8 @@
     display: flex;
     overflow-x: auto;
     margin: 1rem 0;
-    max-width: calc(100vw - 2rem);
+    max-width: 90%;
+    background-color: rgba(156, 114, 60, 0.6);
   }
   
   #recipe-menu div {
@@ -92,7 +100,8 @@
     display: flex;
     overflow-x: auto;
     margin: 1rem 0;
-    max-width: calc(100vw - 2rem);
+    max-width: 90%;
+    background-color: rgba(156, 114, 60, 0.6);
   }
   
   #favoriteList div {
@@ -121,14 +130,14 @@
     max-width: 90%;
     height: auto;
     font-size: 4ch;
-    font-weight: 300;
+    font-weight: 400;
     border: black;
     border-width: 2px;
     border-style: solid;
     margin: auto;
     box-sizing: border-box;
     padding: 10px;
-    background-color: rgba(210, 180, 140, 0.2);
+    background-color: rgba(210, 180, 140, 0.6);
     
   }
 
@@ -170,7 +179,7 @@
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
-    background-color: rgba(210, 180, 140, 0.2);
+    background-color: rgba(210, 180, 140, 0.6);
   }
 
   li {
@@ -190,7 +199,7 @@
   textarea {
     font-size: 4ch;
     border: 1px solid black;
-    background-color: rgba(210, 180, 140, 0.2);
+    background-color: rgba(210, 180, 140, 0.6);
     padding: 0.5rem;
     margin: auto;
     width: 100%;
@@ -198,11 +207,12 @@
   
   label{
     font-size: 4ch;
+    color: #ffffff
   }
 
   input[type="submit"] {
     color: black;
-    border: 1px solid white;
+    border: 1px solid black;
     background-color: rgb(65, 124, 252);
     cursor: pointer;
     transition: all 0.3s;
@@ -225,7 +235,7 @@
   
   #commentDisplay {
     font-size: 5ch;
-    font-weight: 300;
+    font-weight: 400;
     max-width: 90%;
     height: auto;
     margin: auto;
@@ -236,5 +246,5 @@
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
-    background-color: rgba(210, 180, 140, 0.2);
+    background-color: rgba(210, 180, 140, 0.6);
   }
