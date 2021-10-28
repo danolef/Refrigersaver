@@ -16,6 +16,7 @@ const favoriteCommentTitleDOM = document.querySelector('#commentDisplayTitle')
 const favoriteCommentForm = document.querySelector('#commentRecipe')
 const favoriteCommentList = document.querySelector('#commentDisplay')
 const recipeIngredients= document.querySelector("#recipeIngredients")
+const greeting= document.querySelector("#greeting")
 let globalMeal;
 
 // EventListeners
@@ -113,6 +114,9 @@ function renderDetails(mealObj) {
     recipeDetailInstructions.textContent = mealObj.strInstructions
     recipeIngredients.style.display= "block";
     ingredientList.style.display= "block";
+    recipeDetailInstructions.style.display= "block"
+    recipeDetailName.style.display= "block"
+    greeting.style.display= "none"
 
     // ingredients appending to DOM
     ingredientsListArray.forEach(ingredient => {
