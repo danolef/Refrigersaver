@@ -70,7 +70,8 @@ function renderRecipes(meal) {
     mealImageTitle.id= "mealImageTitle"
 
     mealImageContainer.addEventListener('click', () => renderRecipeDetails(meal));
-
+  
+  
     mealImageTitle.textContent = mealTitle;
     mealImageDom.src = mealImage;
     mealImageDom.alt = mealTitle;
@@ -139,24 +140,45 @@ function renderFavorites(meal){
     const favoriteContainer = document.createElement('div');
     const favoriteImage = document.createElement('img');
     const favoriteTitle = document.createElement('p');
-    favoriteTitle.id= "favoriteTitle"
+    favoriteTitle.className= "favoriteTitle";
+    const deleteButton= document.createElement("button");
 
     favoriteImage.src = meal.strMealThumb;
     favoriteImage.alt = meal.strMeal;
     favoriteTitle.textContent = meal.strMeal;
-    favoriteContainer.className = 'favoriteContainer'
+    favoriteContainer.className = 'favoriteContainer';
+    deleteButton.textContent= "Delete";
+    deleteButton.className= "deleteButton";
     
     favoriteContainer.appendChild(favoriteImage)
     favoriteContainer.appendChild(favoriteTitle)
+    favoriteContainer.appendChild(deleteButton)
     favoriteList.appendChild(favoriteContainer)
     
     favoriteContainer.addEventListener('click', (e) => {
         renderFavoriteDetails(meal)
         e.stopImmediatePropagation();
     })
+
+    deleteButton.addEventListener('click', (e) => {
+        e.target.parentNode.remove()
+        deleteButtonPer(meal)
+    })
 }
 
 // Event Handler
+
+function deleteButtonPer(meal) {
+    
+    fetch(`http://localhost:3000/resources/${meal.id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+        })
+        .then(res => res.json())
+        .then(console.log("obj deleted"))
+}
 
 function addToFavorite(mealObj) {
 
