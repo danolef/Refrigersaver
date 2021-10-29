@@ -95,9 +95,28 @@ function renderRecipeDetails(meal) {
         const favoriteButton = document.createElement('button')
         favoriteButton.textContent = 'Add to Favorites!'
         favBttn.appendChild(favoriteButton)
-        favoriteButton.addEventListener("click", () => addToFavorite(mealObj))
+
+        let targetMeal = meal
+        targetMeal = meal
+
+        favoriteButton.addEventListener("click", () => {
+            fetch("http://localhost:3000/resources")
+            .then(res => res.json())
+            .then( mealArr => {
+                let duplicateMeal = mealArr.filter(mealObj => mealObj.idMeal === targetMeal.idMeal)
+                console.log(duplicateMeal)
+                if (duplicateMeal.length === 0) {
+                    addToFavorite(mealObj)
+                } else {
+                    return alert("You have liked this meal!")
+                }
+            })
+
+        })
     })
 }
+
+
 
 function renderDetails(mealObj) {
     let ingredientsListArray = []
