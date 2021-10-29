@@ -124,6 +124,7 @@
   }
 
   #favoriteList {
+    height: 250px;
     display: flex;
     overflow-x: auto;
     margin: 1rem 0;
@@ -261,7 +262,7 @@
     margin-bottom: 20px;
   }
 
-  input:hover {
+  input[type="submit"]:hover {
     background-color: rgb(179, 2, 2)
   }
   
@@ -286,7 +287,7 @@
     font-weight: 400;
   }
 
-  #favoriteTitle {
+  .favoriteTitle {
     font-size: 3ch;
     font-weight: 400;
   }
@@ -305,4 +306,14 @@
     box-sizing: border-box;
     padding: 10px;
     background-color: rgba(210, 180, 140, 0.6);
+  }
+
+  .deleteButton {
+    width: 125px;
+    height: auto;
+    font-size: 3ch;
+    margin-top: 15px;
+    margin: auto;
+    position: sticky;
+    bottom: 0;
   }
