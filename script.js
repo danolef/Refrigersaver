@@ -17,6 +17,8 @@ const favoriteCommentForm = document.querySelector('#commentRecipe')
 const favoriteCommentList = document.querySelector('#commentDisplay')
 const recipeIngredients= document.querySelector("#recipeIngredients")
 const greeting= document.querySelector("#greeting")
+const recipeDetailImage= document.querySelector("#recipeDetailImage")
+const openingImage= document.querySelector("#openingImage")
 let globalMeal;
 
 // EventListeners
@@ -65,6 +67,7 @@ function renderRecipes(meal) {
     let mealImageDom = document.createElement('img');
     let mealImageContainer = document.createElement('div');
     let mealImageTitle = document.createElement('p');
+    mealImageTitle.id= "mealImageTitle"
 
     mealImageContainer.addEventListener('click', () => renderRecipeDetails(meal));
 
@@ -117,6 +120,8 @@ function renderDetails(mealObj) {
     recipeDetailInstructions.style.display= "block"
     recipeDetailName.style.display= "block"
     greeting.style.display= "none"
+    openingImage.style.display= "none"
+    recipeDetailImage.style.display= "block"
 
     // ingredients appending to DOM
     ingredientsListArray.forEach(ingredient => {
@@ -134,6 +139,7 @@ function renderFavorites(meal){
     const favoriteContainer = document.createElement('div');
     const favoriteImage = document.createElement('img');
     const favoriteTitle = document.createElement('p');
+    favoriteTitle.id= "favoriteTitle"
 
     favoriteImage.src = meal.strMealThumb;
     favoriteImage.alt = meal.strMeal;
