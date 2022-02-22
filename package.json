@@ -1,0 +1,21 @@
+{
+  "name": "refrigersaver",
+  "version": "1.0.0",
+  "description": "Have you ever gotten to the end of a long week with grocery supplies on the edge of spoiling from the weekend's grocery haul? Do you hate to waste groceries you spent your hard earned money on? Refrigersaver is an application designed to help cut down on ingredient waste by providing potential recipes using a desired ingredient.",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "e2e": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danolef/Refrigersaver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danolef/Refrigersaver/issues"
+  },
+  "homepage": "https://github.com/danolef/Refrigersaver#readme"
+}
